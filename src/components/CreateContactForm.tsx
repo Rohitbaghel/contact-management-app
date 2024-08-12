@@ -11,7 +11,10 @@ const CreateContactForm: React.FC = () => {
     const formattedData = {
       ...data,
       id: Date.now(),
-      phone: `${data.phone.countryCode}${data.phone.number}`
+      phone: {
+        countryCode: data.phone.countryCode,
+        number: data.phone.number
+      }
     };
     dispatch(addContact(formattedData));
   };

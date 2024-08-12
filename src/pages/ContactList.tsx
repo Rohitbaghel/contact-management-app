@@ -21,7 +21,7 @@ const ContactList: React.FC = () => {
             <div>
               <h2 className="text-xl font-semibold mb-2">{contact.name}</h2>
               <p className="text-gray-600 mb-1">Email: {contact.email}</p>
-              <p className="text-gray-600 mb-1">Phone: {contact.phone}</p>
+              <p className="text-gray-600 mb-1">Phone: {contact.phone.countryCode}{contact.phone.number}</p>
               <div className="flex space-x-2 mt-4">
                 <Link to={`/contact/${contact.id}`} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition duration-200">View Details</Link>
                 <Link to={`/edit-contact/${contact.id}`} className="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition duration-200">Edit</Link>

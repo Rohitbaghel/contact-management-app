@@ -21,8 +21,8 @@ const ContactDetails: React.FC = () => {
   const formattedInitialData = {
     ...contact,
     phone: {
-      countryCode: contact.phone.slice(0, 2),
-      number: contact.phone.slice(2)
+      countryCode: contact.phone.countryCode,
+      number: contact.phone.number
     }
   };
 
@@ -34,7 +34,10 @@ const ContactDetails: React.FC = () => {
     const formattedContact = {
       ...data,
       id: contact.id,
-      phone: `${data.phone.countryCode}${data.phone.number}`
+      phone: {
+        countryCode: data.phone.countryCode,
+        number: data.phone.number
+      }
     };
     dispatch(editContact(formattedContact));
     setIsEditing(false);
@@ -61,7 +64,7 @@ const ContactDetails: React.FC = () => {
           <div className="space-y-2">
             <p className="text-xl font-semibold">{contact.name}</p>
             <p className="text-gray-600">Email: {contact.email}</p>
-            <p className="text-gray-600">Phone: {contact.phone}</p>
+            <p className="text-gray-600">Phone: {contact.phone.countryCode}{contact.phone.number}</p>
             <p className="text-gray-600">
               Address: {contact.address.street}, {contact.address.city}, {contact.address.zipcode}
             </p>

@@ -2,7 +2,10 @@ export interface Contact {
   id: number;
   name: string;
   email: string;
-  phone: string;
+  phone: {
+    countryCode: string;
+    number: string;
+  };
   address: {
     street: string;
     city: string;

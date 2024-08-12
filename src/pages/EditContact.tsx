@@ -26,7 +26,10 @@ const EditContact: React.FC = () => {
     dispatch(editContact({
       id: contact.id,
       ...formData,
-      phone: formData.phone.countryCode + formData.phone.number
+      phone: {
+        countryCode: formData.phone.countryCode,
+        number: formData.phone.number
+      }
     }));
     navigate('/');
   };
@@ -35,8 +38,8 @@ const EditContact: React.FC = () => {
     name: contact.name,
     email: contact.email,
     phone: {
-      countryCode: contact.phone.slice(0, 3),
-      number: contact.phone.slice(3)
+      countryCode: contact.phone.countryCode,
+      number: contact.phone.number
     },
     address: contact.address
   };

@@ -36,7 +36,6 @@ const ContactForm: React.FC<ContactFormProps> = ({ onSubmit, initialData, submit
 	
 	console.log(initialData, "errors");
 	
-
   const onSubmitWrapper = (data: ContactFormData) => {
     onSubmit(data);
     reset();
