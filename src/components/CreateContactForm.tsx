@@ -21,6 +21,7 @@ const CreateContactForm: React.FC = () => {
 
   return (
     <div className="mb-8 bg-white shadow-md rounded px-8 pt-6 pb-8">
+      <h1 className="text-3xl font-bold mb-6 text-gray-800 text-center">Add Contact</h1>
       <ContactForm onSubmit={onSubmit} submitButtonText="Add Contact" />
     </div>
   );
