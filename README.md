@@ -1,46 +1,121 @@
-# Getting Started with Create React App
+# Contact Management App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A React application for managing contacts and viewing COVID-19 statistics on a map and chart.
+
+## Features
+
+- Contact Management
+  - View, add, edit, and delete contacts
+  - Persistent storage using IndexedDB
+- COVID-19 Dashboard
+  - Global COVID-19 cases chart
+  - Interactive map with country-specific COVID-19 data
+
+## Technologies Used
+
+- React 18
+- TypeScript
+- Redux Toolkit
+- React Router 6
+- React Query
+- Zod
+- Leaflet
+- Chart.js
+- Tailwind CSS
+- IndexedDB
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js (v14 or later)
+- npm
+
+### Installation
+
+1. Clone the repository:
+   ```
+   git clone https://github.com/rohitbaghel/contact-management-app.git
+   ```
+
+2. Navigate to the project directory:
+   ```
+   cd contact-management-app
+   ```
+
+3. Install dependencies:
+   ```
+   npm install
+   ```
+
+4. Start the development server:
+   ```
+   npm start
+   ```
+
+5. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ## Available Scripts
 
-In the project directory, you can run:
+- `npm start`: Run the app in development mode
+- `npm test`: Launch the test runner
+- `npm run build`: Build the app for production
+- `npm run eject`: Eject from Create React App
 
-### `npm start`
+## Project Structure
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+```
+src/
+├── api/
+├── components/
+├── pages/
+├── redux/
+├── types/
+├── utils/
+├── App.tsx
+├── index.tsx
+└── ...
+```
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Main Components
 
-### `npm test`
+- `ContactList`: Displays the list of contacts
+- `ContactForm`: Used for adding and editing contacts
+- `ContactDetails`: Shows detailed information about a contact
+- `MapAndChart`: Displays COVID-19 statistics
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## State Management
 
-### `npm run build`
+Redux is used for state management. The contact slice is defined in `src/redux/contactSlice.ts`.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Data Persistence
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Contacts are stored locally using IndexedDB. See `src/utils/db.ts` for implementation details.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Routing
 
-### `npm run eject`
+React Router is used for navigation. Main routes are defined in `src/App.tsx`.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Styling
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Tailwind CSS is used for styling. Configuration can be found in `tailwind.config.js`.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## API Integration
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+COVID-19 data is fetched from an external API. API calls are defined in `src/api/contacts.ts`.
 
-## Learn More
+## Form Validation
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Zod is used for form validation. The contact schema is defined in `src/types/contactSchema.ts`.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Testing
+
+Jest and React Testing Library are used for testing. Run tests with `npm test`.
+
+## Contributing
+
+Contributions are welcome. Please fork the repository and create a pull request with your changes.
+
+## License
+
+This project is open source and available under the [MIT License](LICENSE).

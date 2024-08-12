@@ -1,25 +1,46 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { Provider } from 'react-redux';
+import store from './redux/store';
+import Navbar from "./components/Navbar";
+import ContactList from "./pages/ContactList";
+import ContactDetails from "./pages/ContactDetails";
+import EditContact from "./pages/EditContact";
+import MapAndChart from "./pages/MapAndChart";
+import CreateContactForm from "./components/CreateContactForm";
+
+const queryClient = new QueryClient();
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+		<Provider store={store}>
+			<QueryClientProvider client={queryClient}>
+				<Router>
+					<div className='flex min-h-screen bg-gray-100'>
+						<Navbar />
+						<main className='flex-grow ml-64 p-8'>
+							<Routes>
+								<Route path='/' element={<ContactList />} />
+								<Route path='/create-contact' element={<CreateContactForm />} />
+								<Route
+									path='/contact/:id'
+									element={<ContactDetails />}
+								/>
+								<Route
+									path='/edit-contact/:id'
+									element={<EditContact />}
+								/>
+								<Route
+									path='/map-and-chart'
+									element={<MapAndChart />}
+								/>
+							</Routes>
+						</main>
+					</div>
+				</Router>
+			</QueryClientProvider>
+		</Provider>
   );
 }
 
