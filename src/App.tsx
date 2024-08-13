@@ -14,33 +14,24 @@ const queryClient = new QueryClient();
 
 function App() {
   return (
-		<Provider store={store}>
-			<QueryClientProvider client={queryClient}>
-				<Router>
-					<div className='flex min-h-screen bg-gray-100'>
-						<Navbar />
-						<main className='flex-grow ml-64 p-8'>
-							<Routes>
-								<Route path='/' element={<ContactList />} />
-								<Route path='/create-contact' element={<CreateContactForm />} />
-								<Route
-									path='/contact/:id'
-									element={<ContactDetails />}
-								/>
-								<Route
-									path='/edit-contact/:id'
-									element={<EditContact />}
-								/>
-								<Route
-									path='/map-and-chart'
-									element={<MapAndChart />}
-								/>
-							</Routes>
-						</main>
-					</div>
-				</Router>
-			</QueryClientProvider>
-		</Provider>
+    <Provider store={store}>
+      <QueryClientProvider client={queryClient}>
+        <Router>
+          <div className='flex flex-col lg:flex-row min-h-screen bg-gray-100'>
+            <Navbar />
+            <main className='flex-grow lg:ml-64 p-4 lg:p-8 mt-16 lg:mt-0'>
+              <Routes>
+                <Route path='/' element={<ContactList />} />
+                <Route path='/create-contact' element={<CreateContactForm />} />
+                <Route path='/contact/:id' element={<ContactDetails />} />
+                <Route path='/edit-contact/:id' element={<EditContact />} />
+                <Route path='/map-and-chart' element={<MapAndChart />} />
+              </Routes>
+            </main>
+          </div>
+        </Router>
+      </QueryClientProvider>
+    </Provider>
   );
 }
 

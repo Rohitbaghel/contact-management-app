@@ -33,9 +33,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ onSubmit, initialData, submit
       }
     }
   });
-	
-	console.log(initialData, "errors");
-	
+
   const onSubmitWrapper = (data: ContactFormData) => {
     onSubmit(data);
     reset();
@@ -43,17 +41,17 @@ const ContactForm: React.FC<ContactFormProps> = ({ onSubmit, initialData, submit
   };
 
   const renderInput = (name: keyof ContactFormData | 'address.street' | 'address.city' | 'address.zipcode' | 'phone.number' | 'address.geo.lat' | 'address.geo.lng', type: string, label: string) => (
-    <div className="mb-6 relative">
+    <div className="mb-6 sm:mb-5 lg:mb-6 relative">
       <input
         {...register(name)}
         type={type}
         id={name}
-        className="peer h-10 w-full border-b-2 border-gray-300 text-gray-900 placeholder-transparent focus:outline-none focus:border-blue-500 rounded-lg"
+        className="peer h-9 sm:h-10 w-full border-b-2 border-gray-300 text-gray-900 placeholder-transparent focus:outline-none focus:border-blue-500 rounded-lg text-xs sm:text-sm lg:text-base px-2 sm:px-3"
         placeholder={label}
       />
       <label
         htmlFor={name}
-        className="absolute left-2 -top-5 text-gray-600 text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-2 peer-focus:-top-5 peer-focus:text-gray-600 peer-focus:text-sm"
+        className="absolute left-2 -top-5 text-gray-600 text-xs sm:text-sm transition-all peer-placeholder-shown:text-sm sm:peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-1.5 sm:peer-placeholder-shown:top-2 peer-focus:-top-5 peer-focus:text-gray-600 peer-focus:text-xs sm:peer-focus:text-sm"
       >
         {label}
       </label>
@@ -66,14 +64,14 @@ const ContactForm: React.FC<ContactFormProps> = ({ onSubmit, initialData, submit
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmitWrapper)} className="max-w-md mx-auto p-8 bg-white">
+    <form onSubmit={handleSubmit(onSubmitWrapper)} className="w-full max-w-md mx-auto py-6 px-3 sm:p-6 lg:p-8 bg-white shadow-md rounded-lg">
       {renderInput('name', 'text', 'Name')}
       {renderInput('email', 'email', 'Email')}
-      <div className="mb-6 relative">
+      <div className="mb-6 sm:mb-5 lg:mb-6 relative">
         <div className="flex gap-x-1">
           <select
             {...register('phone.countryCode')}
-            className="h-10 w-1/4 border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:border-blue-500 rounded-lg"
+            className="h-9 sm:h-10 w-1/4 border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:border-blue-500 rounded-lg text-xs sm:text-sm lg:text-base px-1 sm:px-2"
           >
             <option value="+91">+91</option>
             <option value="+1">+1</option>
@@ -83,12 +81,12 @@ const ContactForm: React.FC<ContactFormProps> = ({ onSubmit, initialData, submit
             {...register('phone.number')}
             type="tel"
             id="phone.number"
-            className="peer h-10 w-3/4 border-b-2 border-gray-300 text-gray-900 placeholder-transparent focus:outline-none focus:border-blue-500 rounded-lg"
+            className="peer h-9 sm:h-10 w-3/4 border-b-2 border-gray-300 text-gray-900 placeholder-transparent focus:outline-none focus:border-blue-500 rounded-lg text-xs sm:text-sm lg:text-base px-2 sm:px-3"
             placeholder="Phone Number"
           />
           <label
             htmlFor="phone.number"
-            className="absolute left-[27%] -top-5 text-gray-600 text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-2 peer-focus:-top-5 peer-focus:text-gray-600 peer-focus:text-sm rounded-lg"
+            className="absolute left-[27%] -top-5 text-gray-600 text-xs sm:text-sm transition-all peer-placeholder-shown:text-sm sm:peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-1.5 sm:peer-placeholder-shown:top-2 peer-focus:-top-5 peer-focus:text-gray-600 peer-focus:text-xs sm:peer-focus:text-sm rounded-lg"
           >
             Phone Number
           </label>
@@ -102,7 +100,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ onSubmit, initialData, submit
       <button 
         type="submit" 
         disabled={!isValid}
-        className={`w-full py-3 rounded-full font-medium text-white transition duration-200 ${
+        className={`w-full py-2 sm:py-2.5 lg:py-3 rounded-full font-medium text-white transition duration-200 text-xs sm:text-sm lg:text-base mt-4 ${
           isValid ? 'bg-blue-500 hover:bg-blue-600' : 'bg-gray-300 cursor-not-allowed'
         }`}
       >

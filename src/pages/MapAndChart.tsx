@@ -62,22 +62,66 @@ const MapAndChart: React.FC = () => {
     ],
   };
 
+  const chartOptions = {
+    responsive: true,
+    maintainAspectRatio: false,
+    scales: {
+      x: {
+        ticks: {
+          maxTicksLimit: 6,
+          maxRotation: 0,
+          minRotation: 0,
+        },
+      },
+      y: {
+        beginAtZero: true,
+        ticks: {
+          callback: function(tickValue: number | string, index: number, ticks: any[]) {
+            const value = Number(tickValue);
+            if (value >= 1000000) return (value / 1000000).toString() + 'M';
+            if (value >= 1000) return (value / 1000).toString() + 'K';
+            return value.toString();
+          },
+        },
+      },
+    },
+    plugins: {
+      legend: {
+        display: false,
+      },
+      tooltip: {
+        callbacks: {
+          label: (context: any) => {
+            let label = context.dataset.label || '';
+            if (label) {
+              label += ': ';
+            }
+            if (context.parsed.y !== null) {
+              label += new Intl.NumberFormat().format(context.parsed.y);
+            }
+            return label;
+          }
+        }
+      }
+    },
+  };
+
   return (
-    <div className="max-w-4xl mx-auto p-4">
-      <h1 className='text-3xl font-bold mb-6 text-gray-800'>COVID-19 Dashboard</h1>
-      <div className='mb-8 bg-white shadow-md rounded p-6'>
-        <h2 className='text-2xl font-semibold mb-4 text-gray-700'>
+    <div className="w-full max-w-4xl mx-auto p-2 sm:p-4">
+      <h1 className='text-xl sm:text-2xl lg:text-3xl font-bold mb-4 sm:mb-6 text-gray-800'>COVID-19 Dashboard</h1>
+      <div className='mb-4 sm:mb-8 bg-white shadow-md rounded p-3 sm:p-4 lg:p-6'>
+        <h2 className='text-lg sm:text-xl lg:text-2xl font-semibold mb-2 sm:mb-4 text-gray-700'>
           Global Cases Fluctuation
         </h2>
-        <div className="h-96">
-          <Line data={chartData} options={{ maintainAspectRatio: false }} />
+        <div className="h-64 sm:h-80 lg:h-96">
+          <Line data={chartData} options={chartOptions} />
         </div>
       </div>
-      <div className='bg-white shadow-md rounded p-6'>
-        <h2 className='text-2xl font-semibold mb-4 text-gray-700'>
+      <div className='bg-white shadow-md rounded p-3 sm:p-4 lg:p-6'>
+        <h2 className='text-lg sm:text-xl lg:text-2xl font-semibold mb-2 sm:mb-4 text-gray-700'>
           COVID-19 Cases by Country
         </h2>
-        <div className="h-96">
+        <div className="h-64 sm:h-80 lg:h-96">
           <MapContainer
             center={[0, 0]}
             zoom={2}
@@ -100,10 +144,10 @@ const MapAndChart: React.FC = () => {
               >
                 <Popup>
                   <div className="text-center">
-                    <h3 className="font-bold">{country.country}</h3>
-                    <p>Active cases: {country.active.toLocaleString()}</p>
-                    <p>Recovered: {country.recovered.toLocaleString()}</p>
-                    <p>Deaths: {country.deaths.toLocaleString()}</p>
+                    <h3 className="font-bold text-sm sm:text-base">{country.country}</h3>
+                    <p className="text-xs sm:text-sm">Active cases: {country.active.toLocaleString()}</p>
+                    <p className="text-xs sm:text-sm">Recovered: {country.recovered.toLocaleString()}</p>
+                    <p className="text-xs sm:text-sm">Deaths: {country.deaths.toLocaleString()}</p>
                   </div>
                 </Popup>
               </Marker>

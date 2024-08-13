@@ -46,7 +46,7 @@ const EditContact: React.FC = () => {
 
   return (
     <div className="max-w-4xl mx-auto p-4">
-      <h1 className="text-3xl font-bold mb-6 text-gray-800">Edit Contact</h1>
+      <h1 className="text-3xl font-bold mb-6 text-gray-800 text-center">Edit Contact</h1>
       <ContactForm
         onSubmit={handleSubmit}
         initialData={formattedContact}
